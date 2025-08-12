@@ -28,13 +28,21 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
 */
 
 function twoSum(nums: number[], target: number) {
-	let prevMap = new Map();
+	// Hash map to store previously seen numbers and their indices
+	// Key: number value, Value: index position
+	let prevMap = new Map<number, number>();
 
+	// Iterate through the array once
 	for (let i = 0; i < nums.length; i++) {
+		// Calculate what number we need to reach the target
 		let diff = target - nums[i];
+
+		// Check if we've seen the complement number before
 		if (prevMap.has(diff)) {
+			// Found the pair! Return indices of complement and current number
 			return [prevMap.get(diff), i];
 		} else {
+			// Store current number and its index for future lookups
 			prevMap.set(nums[i], i);
 		}
 	}
